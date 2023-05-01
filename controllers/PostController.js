@@ -25,7 +25,6 @@ const PostController = {
       let data = req.body;
       if (req.file) {
         data = { ...req.body, image: req.file.filename };
-        console.log("there is file");
         const post = await Post.findById(req.params._id); // Delete old image from uploads if user provides a new one
         if (post.image) {
           const imagePath = path.join(__dirname, "../public/uploads/posts/", post.image);

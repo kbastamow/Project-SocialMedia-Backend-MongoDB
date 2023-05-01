@@ -10,7 +10,6 @@ const authentication = async (req, res, next) => {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ _id: payload._id, tokens: token }); // tokens: token - changed after user model/login was changed to one token only
     if (!user) {
-      console.log(user);
       return res.status(401).send("Unauthorised request");
     }
     req.user = user;
